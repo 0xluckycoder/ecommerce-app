@@ -9,7 +9,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
-// import items from './routes/api/items';
 const items = require('./routes/api/items');
 
 const app = express();
@@ -18,10 +17,23 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// mongoose.connect();
+// connect to the database
+mongoose.connect('mongodb+srv://user:user1234@cluster0.rurmq.mongodb.net/testDB?retryWrites=true&w=majority', 
+{ 
+    useNewUrlParser: true,  
+    useUnifiedTopology: true  
+}).then(() => console.log(`🍃 connected to database`)
+).catch(error => console.log(error));
 
 // use routes
 app.use('/api/items', items);
+
+// error handler
+app.use((req, res) => {
+    let error = new Error('Route not found');
+    error.status = 404;
+    console.log(error);
+});
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -29,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    })
+    });
 }
 
 const PORT = process.env.PORT || 5000;
