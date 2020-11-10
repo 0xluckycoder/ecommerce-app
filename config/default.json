@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://user:user1234@cluster0.rurmq.mongodb.net/testDB?retryWrites=true&w=majority",
+    "jwtSecret": "dfk_mySecret"
+}

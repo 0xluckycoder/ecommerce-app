@@ -15,13 +15,32 @@ I'm building full stack ecommerce app for my portfolio. this project is still un
 
 There is more todo i'll add those later.
 
+FrontEnd
+
+- [x] - Design the app state
+- [x] - Auth state
+- [x] - Cart state
+- [x] - auth actions with API
+- [x] - product showcase
+- [x] - Login / Register UI Components
+- [ ] - Save Cart Items in Local Storage
+- [ ] - Login Register Errors (Bootstrap alert)
+- [ ] - User Profile UI
+- [ ] - Static admin profile UI
+- [ ] - Admin product Upload Form UI
+- [ ] - Search Suggestions UI
+
 Backend
 
-- [x] - setup client and server with cors & concurrently module
-- [ ] - add authentication with jwt
-- [ ] - validate data with joi module
+- [ ] - GET request to Search products
 
-Frontend
+- [ ] - POST request to register users
+    - [ ] - validate fields with Joi
+    - [ ] - hash password and generate accessToken
 
-- [ ] - Start building the UI
-- [ ] - Use Redux for state management
+- [ ] - GET request to get single user (user profile)
+    [ ] - generate a new accessTokens
+
+- [ ] - POST request to upload products (Admin Role)
+    - [ ] - validate fields with Joi
+    - [ ] - cut images with sharp library

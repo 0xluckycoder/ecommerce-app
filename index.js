@@ -1,15 +1,16 @@
 // import express from 'express';
-//import mongoose from 'mongoose';
-//import path from 'path';
-//import cors from 'cors';
-//import morgan from 'morgan';
+// import mongoose from 'mongoose';
+// import path from 'path';
+// import cors from 'cors';
+// import morgan from 'morgan';
 
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const config = require('config');
 
-const items = require('./routes/api/items');
+// const items = require('./routes/api/items');
 
 const app = express();
 
@@ -17,23 +18,31 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// cors
+app.use(cors());
+
+// DB config
+const db = config.get('mongoURI');
+
 // connect to the database
-mongoose.connect('mongodb+srv://user:user1234@cluster0.rurmq.mongodb.net/testDB?retryWrites=true&w=majority', 
-{ 
+mongoose.connect(db ,{ 
     useNewUrlParser: true,  
-    useUnifiedTopology: true  
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }).then(() => console.log(`🍃 connected to database`)
 ).catch(error => console.log(error));
 
 // use routes
-app.use('/api/items', items);
+app.use('/api/items', require('./routes/api/Items'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // error handler
-app.use((req, res) => {
-    let error = new Error('Route not found');
-    error.status = 404;
-    console.log(error);
-});
+// app.use((req, res) => {
+//     let error = new Error('Route not found');
+//     error.status = 404;
+//     console.log('❌❌',error);
+// });
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

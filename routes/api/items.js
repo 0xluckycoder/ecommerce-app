@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth  = require('../../middleware/auth');
 
 // item modal
 const Item = require('../../models/Item');
@@ -49,7 +50,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // delete
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
     try {
         const { id } = req.params;
         const getItem = await Item.findById(id);
