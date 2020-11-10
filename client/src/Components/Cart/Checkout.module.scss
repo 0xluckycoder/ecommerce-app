@@ -1,0 +1,107 @@
+@import '../vars.scss';
+@import '../Button.scss';
+
+.wrapper {
+    position: relative;
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .list {
+        ul {
+            height: 300px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+
+            }
+            
+            &::-webkit-scrollbar-track {
+                display: none;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background-color: $secondary-color;
+                border-radius: 20px;
+            // outline: 1px solid slategrey;
+            }
+
+            li {
+                padding: 1rem 1rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                img {
+                    object-fit: cover;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 10px;
+                }
+
+                p {
+                    margin: 0;
+                    text-transform: capitalize;
+
+                    &:last-child {
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                        color: $primary-color;
+                    }
+                }
+
+                i {
+                    padding: 8px 10px;
+                    background: #ffdfeb;
+                    border-radius: 5px;
+                    color: remove;
+                    color: #ff013e;
+
+                    &:hover {
+                        color: #ffdfeb;
+                        background: #ff013e;
+                    }
+                }
+
+                &:hover {
+                    background: #c3985f1f;
+                }
+
+                // &:not(:last-child) {
+                //     margin-bottom: 1rem;
+                // }
+            }
+
+            // .empty {
+            //     display: flex;
+            //     justify-content: center;
+            //     align-items: center;
+            // }
+        }
+
+    }
+
+    .footer {
+        // position: relative;
+        // bottom: 5px;
+        padding: 0 1rem 1rem 1rem;
+        display: flex;
+        align-items: center;
+        // background: grey;
+        justify-content: space-between;
+    }
+
+    .button {
+        color: #fd6746;
+        font-weight: 500;
+
+        &:hover {
+            background: #fd6746;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.button {
+    padding: 10px 25px;
+    border-radius: 20px;
+    outline: 0;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+        border: none;
+    }
+}
+

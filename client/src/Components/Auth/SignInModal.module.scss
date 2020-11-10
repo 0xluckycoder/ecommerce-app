@@ -1,0 +1,59 @@
+@import '../Button.scss';
+@import '../vars.scss';
+
+.overlay {
+    background: rgba(0, 0, 0, 0.671);
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+
+    .wrapper {
+        position: fixed;
+        display: grid;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 420px;
+        margin-left: -200px;
+        margin-top: -200px;
+        background: #fff;
+        border-radius: 10px;
+
+        .body {
+            margin: 0 2rem;
+            display: flex;
+            flex-direction: column;
+
+            .field, .buttonWrapper, p {
+                padding-top: 1rem;
+            }
+
+            input {
+                background: $input-field-color;
+            }
+
+            .buttonWrapper {
+                display: flex;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+                font-weight: 400;
+            }
+
+            p,h1 {
+                text-align: center;
+            }
+
+            .button {
+                background:$primary-color;
+                color: #fff;
+            }
+        }
+    }
+
+}

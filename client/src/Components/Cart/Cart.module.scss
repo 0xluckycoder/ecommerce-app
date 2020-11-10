@@ -1,0 +1,22 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.671);
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+
+    .wrapper {
+        position: fixed;
+        display: grid;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 440px;
+        margin-left: -200px;
+        margin-top: -200px;
+        background: #fff;
+        border-radius: 10px;
+    }
+}

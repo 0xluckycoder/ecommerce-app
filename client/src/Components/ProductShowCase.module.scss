@@ -1,0 +1,143 @@
+@import 'vars';
+@import 'Button';
+
+.loading {
+    // margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+    height: 100vh;
+
+    .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // margin-top: 1rem;
+        img {
+            min-height: 500px;
+            min-width: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+
+    .content {
+        // margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        margin: auto;
+
+        .heading {
+            h1 {
+                text-transform: capitalize;
+                font-size: 2rem;
+                margin: 0;
+            }
+
+            p {
+                padding-top: 1rem;
+                margin: 0;
+                color: $light-text;
+            }
+        }
+
+        .nutrition {
+            padding-top: 2rem;
+            color: $light-text;
+            width: 100%;
+            div {
+                display: flex;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                }
+
+                &:not(:last-child) {
+                    padding-bottom: 1rem;
+                }
+            }
+            
+        }
+
+        %shared-style {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .price {
+            @extend %shared-style;
+            padding-top: 2rem;
+
+
+            p {
+                font-weight: 600;
+                &:nth-child(2) {
+                    color: $primary-color;
+                    font-size: 1.1rem;
+                }
+
+                margin: 0;
+            }
+        }
+
+        .quantity {
+            @extend %shared-style;
+            padding-top: 2rem;
+            p {                
+                &:nth-child(1) {
+                    font-weight: 600;
+                }
+                margin: 0;
+            }
+
+            .quantity_buttons {
+                display: flex;
+                align-items: center;
+                p {
+                    margin: 0 0.5rem;
+                }
+                button {
+                    outline: 0;
+                    cursor: pointer;
+                    border: none;
+                    // padding: calc(20px - 14px) calc(10px - 16.8px);
+                    background: $primary-color;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    color: #fff;
+                }
+            }
+
+        }
+
+        .buttons {
+            @extend %shared-style;
+            padding-top: 2rem;
+
+            button {
+                &:first-child {
+                    background: $primary-color;
+                    color: #fff;
+                }
+
+                &:last-child {
+                    background: $secondary-color;
+                    color: white;
+                }
+            }
+        }
+    }
+}

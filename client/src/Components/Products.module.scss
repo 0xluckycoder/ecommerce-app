@@ -1,0 +1,52 @@
+@import 'vars';
+@import 'Button';
+
+.loading {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: grid;
+    margin-top: 5rem;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 2rem;
+    // margin: 0 1rem;
+
+    .product {
+        a {
+            text-align: center;
+            text-decoration: none;
+
+            color: #000;
+
+            &:hover {
+                color: #000;
+            }
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            border-radius: 10px;
+            width: 250px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .name {
+            padding-top: 5px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+        }
+ 
+
+    }
+}

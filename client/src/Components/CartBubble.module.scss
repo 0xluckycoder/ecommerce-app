@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 150px;
+    height: 50px;
+    background: #222;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    gap: 1rem;
+
+    &:hover {
+        background: #000;
+    }
+
+    p {
+        margin: 0px;
+    }
+}

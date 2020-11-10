@@ -1,0 +1,65 @@
+@import '../vars.scss';
+@import '../Button.scss';
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+
+    .graphic {
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
+        background: #ffe0b9;
+        color: $primary-color;
+
+        h1 {
+            margin: 0 2rem;
+        }
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 3rem;
+        
+        .formButtons {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+
+            .button {
+                &:first-child {
+                    background: $primary-color;
+                    color: #fff;
+                }
+
+                &:last-child {
+                    background: $secondary-color;
+                    color: #fff;
+                }
+            }
+        }
+
+        .inlineFields {
+            margin-top: 0.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+        }
+
+        .field {
+            padding-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        input {
+            background: $input-field-color;
+        }
+    }
+}
