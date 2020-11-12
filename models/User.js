@@ -2,19 +2,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // const Joi = require('@hapi/joi');
 
+const requiredString = {
+    type: String,
+    required: true
+}
+
 const UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
+    firstName: {
+        ...requiredString
+    },
+    lastName: {
+        ...requiredString
     },
     email: {
-        type: String,
-        unique: true,
-        required: true
+        ...requiredString,
+        unique: true
+    },
+    shippingAddress: {
+        ...requiredString
     },
     password: {
-        type: String,
-        required: true
+        ...requiredString
     },
     register_date: {
         type: Date,

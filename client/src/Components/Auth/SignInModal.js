@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, useField } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import styles from './SignInModal.module.scss';
+import { signInRequest } from '../../API/api';
+import { ACTIONS } from '../../actions';
+import { AuthContext } from '../../Context/AuthContext'
 
 function SignInModal() {
+
+    const { dispatch } = useContext(AuthContext);
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -22,11 +27,43 @@ function SignInModal() {
         e.target.className.split(' ').includes(includeClass) && history.push('/dark-coffee');
     }
 
+    const [errors, setErrors] = useState({});
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const timer  = setTimeout(() => setErrors({}), 2000);
+
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [errors]);
+
+    const signIn = async (values) => {
+        setLoading(true);
+        try {
+            const data = await signInRequest(values);
+            if (data) {
+                console.log(data);
+                dispatch({type: ACTIONS.LOGIN_SUCCESS });
+                localStorage.setItem('token', data.token);
+                alert('user successfully logged in');
+            }
+        } catch (error) {
+            dispatch({ type: ACTIONS.LOGIN_FAIL });
+            console.log('Error Occurred During Login', error);
+            setErrors(error);
+        }
+        setLoading(false);
+    }
+
     return ReactDOM.createPortal(
         <div onClick={(e) => handleClose(e, 'sign-in-overlay')} className={`sign-in-overlay ${styles.overlay}`}>
             <div className={styles.wrapper}>
                 <div className={styles.body}>
                 <h1>Sign in</h1>
+                {errors.error !== undefined && <div className={`${styles.alert} alert alert-danger`} role="alert">{errors.error}</div>}
+                {loading && <div className={`${styles.alert} alert alert-primary`} role="alert">Please wait...</div>}
                 <Formik
                 initialValues={{
                     email: "",
@@ -36,8 +73,8 @@ function SignInModal() {
                     email: Yup.string().email().required(),
                     password: Yup.string().required()
                 })}
-                onSubmit={({email, password}) => {
-                    console.log(email, password);
+                onSubmit={(values) => {
+                    signIn(values);
                 }}
                 >
                     <Form>
