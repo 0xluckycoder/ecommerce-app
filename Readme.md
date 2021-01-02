@@ -24,8 +24,8 @@ FrontEnd
 - [x] - product showcase
 - [x] - Login / Register UI Components
 - [ ] - Save Cart Items in Local Storage
-- [ ] - Login Register Errors (Bootstrap alert)
-- [ ] - User Profile UI
+- [x] - Login Register Errors (Bootstrap alert)
+- [x] - User Profile UI
 - [ ] - Static admin profile UI
 - [ ] - Admin product Upload Form UI
 - [ ] - Search Suggestions UI
@@ -34,12 +34,12 @@ Backend
 
 - [ ] - GET request to Search products
 
-- [ ] - POST request to register users
-    - [ ] - validate fields with Joi
-    - [ ] - hash password and generate accessToken
+- [x] - POST request to register users
+    - [x] - validate fields with Joi
+    - [x] - hash password and generate accessToken
 
-- [ ] - GET request to get single user (user profile)
-    [ ] - generate a new accessTokens
+- [x] - GET request to get single user (user profile)
+    [x] - generate a new accessTokens
 
 - [ ] - POST request to upload products (Admin Role)
     - [ ] - validate fields with Joi
