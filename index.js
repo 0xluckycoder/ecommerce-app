@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const config = require('config');
-
+const morgan = require('morgan');
 // const items = require('./routes/api/items');
 
 const app = express();
@@ -18,8 +18,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// cors
 app.use(cors());
+app.use(morgan('dev'));
 
 // DB config
 const db = config.get('mongoURI');
@@ -28,7 +28,8 @@ const db = config.get('mongoURI');
 mongoose.connect(db ,{ 
     useNewUrlParser: true,  
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 }).then(() => console.log(`🍃 connected to database`)
 ).catch(error => console.log(error));
 

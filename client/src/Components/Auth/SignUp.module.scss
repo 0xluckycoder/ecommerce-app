@@ -63,3 +63,49 @@
         }
     }
 }
+
+@media(max-width: 900px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+
+        .graphic {
+            height: 60vh;
+        }
+
+        .form {
+            margin-top: 3rem;
+            padding-bottom: 5rem;
+        }
+
+
+    }
+}
+
+@media(max-width: 700px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+
+        .graphic {
+            height: 60vh;
+        }
+
+        .form {
+            margin-top: 3rem;
+            padding-bottom: 5rem;
+
+            .inlineFields {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+
+@media(max-width: 450px) {
+    .wrapper {
+        .form {
+            .formButtons {
+                flex-direction: column;
+            }
+        }
+    }
+}

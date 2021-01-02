@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import styles from './ProductShowCase.module.scss';
 import { ItemContext } from '../Context/ItemContext';
 
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import CartBubble from './CartBubble';
 import Loader from './Loader';
 import { ACTIONS } from '../actions';
@@ -110,10 +110,11 @@ function Product({ state }) {
     }
 
     return (
+        <>
         <section className={styles.wrapper}>
             
             <div className={styles.image}>
-                <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1604854731/coffee_ukkvte.jpg" alt="product" />
+                <img draggable="false" src="https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg" alt="product" />
             </div>
 
             <div className={styles.content}>
@@ -156,8 +157,11 @@ function Product({ state }) {
                     <button onClick={() => addToCart(state)} className={styles.button}>Add to Cart</button>
                 </div>
             </div>
-            <CartBubble />
+
         </section>
+
+        <CartBubble />
+        </>
     );
 }
 

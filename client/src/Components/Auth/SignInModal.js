@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, useField } from 'formik';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import styles from './SignInModal.module.scss';
 import { signInRequest } from '../../API/api';
@@ -10,11 +10,13 @@ import { AuthContext } from '../../Context/AuthContext'
 
 function SignInModal() {
 
-    const { dispatch } = useContext(AuthContext);
+    const { dispatch, state } = useContext(AuthContext);
 
     useEffect(() => {
+        let mounted = true;
         document.body.style.overflow = "hidden";
         return () => {
+            mounted = false;
             document.body.style.overflow = "visible";
         }
     }, []);
@@ -45,19 +47,22 @@ function SignInModal() {
             const data = await signInRequest(values);
             if (data) {
                 console.log(data);
-                dispatch({type: ACTIONS.LOGIN_SUCCESS });
+                dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: { data: data.user, token: data.token } });
                 localStorage.setItem('token', data.token);
                 alert('user successfully logged in');
+                history.push(`/user/${data.user._id}`);
             }
         } catch (error) {
             dispatch({ type: ACTIONS.LOGIN_FAIL });
             console.log('Error Occurred During Login', error);
             setErrors(error);
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     return ReactDOM.createPortal(
+        <>
+        {state.isAuthenticated && state.user && state.user.data && <Redirect to={`/user/${state.user.data._id}`} />}
         <div onClick={(e) => handleClose(e, 'sign-in-overlay')} className={`sign-in-overlay ${styles.overlay}`}>
             <div className={styles.wrapper}>
                 <div className={styles.body}>
@@ -88,7 +93,8 @@ function SignInModal() {
                 <p>Dont have an account ? <Link to="/signup">Sign up</Link></p>
                 </div>
             </div>
-        </div>,
+        </div>
+        </>,
         document.getElementById("portal")
     );
 }

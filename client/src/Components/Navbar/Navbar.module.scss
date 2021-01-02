@@ -1,5 +1,5 @@
-@import 'vars';
-@import 'Button';
+@import '../vars';
+@import '../Button';
 
 .wrapper {
     z-index: 1;
@@ -83,6 +83,45 @@
                     transition: 200ms ease;
                 }
             }
+        }
+
+        .menuIcon {
+            display: none;
+        }
+    }
+}
+
+@media(max-width: 1000px) {
+    .wrapper {
+        justify-content: space-between;
+        padding: 0 2rem;
+        .links {
+            display: none;
+        }
+
+        .signIn {
+            display: none;
+        }
+
+        .searchWrapper {
+            .menuIcon {
+                display: block;
+                font-size: 1.6rem;
+                cursor: pointer;
+                border: 1.7px solid $primary-color;
+                color: $primary-color;
+                padding: 0px 10px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        .search {
+            display: none;
         }
     }
 }

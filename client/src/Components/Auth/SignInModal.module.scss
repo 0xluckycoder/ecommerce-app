@@ -62,3 +62,12 @@
     }
 
 }
+
+@media(max-width: 400px) {
+    .overlay {
+        .wrapper {
+            width: 310px;
+            margin-left: -150px;
+        }
+    }
+}

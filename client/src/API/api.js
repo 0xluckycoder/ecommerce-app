@@ -90,3 +90,37 @@ export function registerRequest({ firstName, lastName, email, shippingAddress, p
         }
     });
 }
+
+export function updateRequest({ id, firstName, lastName, email, shippingAddress }) {
+    return new Promise(async (resolve, reject) => {
+        // Request body
+        const body = JSON.stringify({ id, firstName, lastName, email, shippingAddress });
+
+        // set headers
+        function tokenConfig() {
+            const token = localStorage.getItem('token');
+            const config = {
+                method: 'PUT',
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body
+            };
+            if (token) config.headers['x-auth-token'] = token;
+            return config;
+        }
+
+
+        try {
+            const response = await fetch('/api/users', tokenConfig());
+            const data = await response.json();
+            if (data.error) {
+                return reject({error: data.error});
+            } else {
+                return resolve(data);
+            }
+        } catch (error) {
+            return reject({ error });
+        }
+    });
+}

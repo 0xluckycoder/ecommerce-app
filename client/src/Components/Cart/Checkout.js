@@ -20,7 +20,7 @@ function Checkout({ setPage }) {
                 <ul>
                     {cart.items !== null && cart.items.map((item, index) => (
                         <li key={index}>
-                            <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1604854731/coffee_ukkvte.jpg" alt="product" />
+                            <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1609596515/posts/xok0ucfoquts81pws0mn.jpg" alt="product" />
                             <div>
                                 <p>{item.product_name}</p>
                                 <p className={style.price}>{item.price} LKR</p>
@@ -39,7 +39,7 @@ function Checkout({ setPage }) {
                 : <h1>{calculateTotal(cart.items)} LKR</h1>
                 
                 }
-                <button className={style.button}>Checkout</button>
+                <button onClick={() => setPage('payment')} className={style.button}>Checkout</button>
             </div>
             {/* {cart.items.map(item => <p>{item.product_name}</p>)}*/}
         </div>

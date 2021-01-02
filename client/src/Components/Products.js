@@ -41,7 +41,7 @@ function Products() {
             {state.map((product, index) => (
                 <div key={index} className={styles.product}>
                     <Link to={`/product/${product._id}`}>
-                        <img draggable="false" alt="product" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1604854731/coffee_ukkvte.jpg" />
+                        <img draggable="false" alt="product" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1609609708/download_nqrqek.jpg" />
                         <p className={styles.name}>{product.product_name}</p>
                     </Link>
                         <p>LKR {product.price}</p>

@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import AuthContextProvider from './Context/AuthContext';
 import ItemContextProvider from './Context/ItemContext';
+import NavbarContextProvider from './Context/NavbarContext';
 
 ReactDOM.render(
   <React.StrictMode>
+    <NavbarContextProvider>
     <ItemContextProvider>
       <AuthContextProvider>
         <App />
       </AuthContextProvider>
     </ItemContextProvider>
+    </NavbarContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

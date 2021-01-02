@@ -37,3 +37,11 @@
         color: #fff;
     }
 }
+
+@media(max-width: 600px) {
+    .wrapper {
+        .content {
+            padding: 0 1rem;
+        }
+    }
+}

@@ -34,7 +34,7 @@ function SignUp() {
             const data = await registerRequest(values);
             if (data) {
                 console.log(data);
-                dispatch({type: ACTIONS.REGISTER_SUCCESS });
+                dispatch({type: ACTIONS.REGISTER_SUCCESS, payload: data });
                 localStorage.setItem('token', data.token);
                 alert('user successfully logged in');
             }
@@ -112,48 +112,3 @@ const TextField = ({id, label, ...props}) => {
 }
 
 export default SignUp;
-
-/*
-                <Formik
-                    initialValues={{
-                        email: "",
-                        password: "",
-                    }}
-                    validationSchema={Yup.object().shape({
-                        email: Yup.string().email().required(),
-                        password: Yup.string().required()
-                    })}
-                    onSubmit={({email, password}) => {
-                        handleSignUp(email, password);
-                    }}
-                >
-                    <Form>
-                        <TextField id="email" name="email" type="email" label="Email" placeholder="example@email.com" />
-                        <TextField id="password" name="password" type="password" label="Password" placeholder="********" />
-                        <button type="submit">Submit</button>
-                    </Form>
-                </Formik>
-                <button onClick={() => setState('signin')}>Sign in</button>
-            </div>
-        </>
-        }
-        </>
-    );
-}
-
-const TextField = ({id, label, ...props}) => {
-    const [field, meta] = useField(props);
-
-    return (
-        <div>
-            <label>{label}</label>
-            <input {...field} {...props} className={`form-control ${meta.touched && meta.error ? `is-invalid` : null}`} />
-            {meta.touched && meta.error ? (
-                <div id={id} className="invalid-feedback">
-                    {meta.error}
-                </div>
-            ): null}
-        </div>
-    );
-}
-*/ 

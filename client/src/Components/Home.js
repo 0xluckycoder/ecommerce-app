@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import Carousel from './Carousel';
 import Products from './Products';
 import CartBubble from './CartBubble';

@@ -3,9 +3,36 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken'); 
+const auth  = require('../../middleware/auth');
 
 // item modal
 const User = require('../../models/User');
+
+// @route PUT api/users
+// @desc Update existing user
+// @access Authenticated users only
+router.put('/', auth, async (req, res, next) => {
+    const { id, firstName, lastName, shippingAddress } = req.body;
+
+    try {
+        if (!id || !firstName || !lastName || !shippingAddress) {
+            res.status(400).json({
+                error: 'Please enter all fields'
+            });
+        }
+        
+        // find the user by id
+        await User.findOneAndUpdate(id , { firstName, lastName, shippingAddress });
+        // return the updated user to client
+        const updatedUser = await User.findById(id);
+        if (updatedUser) {
+            res.json({ data: updatedUser });
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+});
 
 // @route POST api/users
 // @desc Register new user

@@ -7,7 +7,7 @@ function Carousel() {
         <section className={styles.wrapper}>
             <div className={styles.container}>
                 {/* <video 
-                src="https://res.cloudinary.com/dw2wcjhod/video/upload/v1604847265/video_rfjr7n.mp4" autoPlay="true" loop="true" muted="true"></video> */}
+                src="https://res.cloudinary.com/dw2wcjhod/video/upload/v1609603103/video_stkgu9.mp4" autoPlay="true" loop="true" muted="true"></video> */}
                 <video></video>
             </div>
             <div className={styles.content}>

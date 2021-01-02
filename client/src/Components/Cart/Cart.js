@@ -3,7 +3,7 @@ import styles from './Cart.module.scss';
 import { ItemContext } from '../../Context/ItemContext';
 
 import Checkout from './Checkout';
-import Payment from './Payment';
+// import Payment from './Payment';
 import Done from './Done';
 
 function Cart({ setOpen }) {
@@ -37,8 +37,8 @@ function Page() {
     switch (page) {
         case 'checkout':
             return <Checkout setPage={setPage} />
-        case 'payment':
-            return <Payment setPage={setPage} />
+        // case 'payment':
+        //     return <Payment setPage={setPage} />
         case 'done':
             return <Done /> 
         default:

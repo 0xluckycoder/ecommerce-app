@@ -22,11 +22,14 @@ const reducer = (state, action) => {
         case ACTIONS.LOGIN_SUCCESS:
         case ACTIONS.REGISTER_SUCCESS:
             // setLocalStorage(action.payload)
+            // console.log(action.payload.data, 'dispatched to context');
+            console.log('action payload', action.payload);
             return state = {
                 ...state,
-                ...action.payload,
                 isAuthenticated: true,
-                isLoading: false
+                isLoading: false,
+                token: action.payload.token,
+                user: { data: action.payload.data },
             }
         // eslint-disable-next-line no-fallthrough
         case ACTIONS.AUTH_ERROR:
@@ -40,6 +43,14 @@ const reducer = (state, action) => {
                 user: null,
                 isAuthenticated: false,
                 isLoading: false
+            }
+        case ACTIONS.UPDATE_SUCCESS:
+            // console.log(action.payload.data, 'dispatched to context');
+            return state = {
+                ...state,
+                isAuthenticated: true,
+                isLoading: false,
+                user: { data: action.payload.data },
             }
         // eslint-disable-next-line no-fallthrough
         default:

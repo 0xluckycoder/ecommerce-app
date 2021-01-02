@@ -34,13 +34,8 @@ router.post('/', async (req, res, next) => {
             { expiresIn: 3600 },
             (err, token) => {
                 if (err) throw err;
-
                 // send success response
-                res.status(200).json({ token, user: {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email
-                }});
+                res.status(200).json({ token, user });
             }
         )
     } catch (error) {
