@@ -1,29 +1,26 @@
-// function logout() {
-// dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
-// }
+function tokenConfig(method, body) {
+    const config = {
+        credentials: 'include',
+        method,
+        headers: {
+            "Content-type": "application/json",
+        },
+    }
+    // if (token) config.headers['x-auth-token'] = getAccessToken();
+    if (body) config.body = body;
+    return config;
+}
+
 export function verifyToken() {
-    return new Promise(async (resolve, reject) => {
-        
-        function tokenConfig() {
-            const token = localStorage.getItem('token');
-            const config = {
-              method: 'GET',
-              headers: {
-                "Content-type": "application/json"
-              }
-            };
-            if (token) config.headers['x-auth-token'] = token;
-            return config;
-        }
-        
+    return new Promise(async (resolve, reject) => {        
         try {
-            const response = await fetch('/api/auth/user', tokenConfig());
+            const response = await fetch('/api/auth/user', tokenConfig('GET'));
             const data = await response.json();
             // check for errors
             if (data.error) {
                 return reject({ error: data.error });
             } else {
-                return resolve({ data });                
+                return resolve(data);                
             }
           
         } catch (error) {
@@ -32,24 +29,11 @@ export function verifyToken() {
     });
 }
 
-export function signInRequest({ email, password }) {
-
+export function signInRequest(data) {
     return new Promise(async (resolve, reject) => {
-
-        // Request body
-        const body = JSON.stringify({ email, password });
-    
-        // Headers
-        const config = {
-            method: 'POST',
-            headers: {
-            "Content-type": "application/json"
-            },
-            body
-        };
-
+        const body = JSON.stringify(data);
         try {
-            const response = await fetch('/api/auth', config);
+            const response = await fetch('/api/auth', tokenConfig('POST', body));
             const data = await response.json();
             if (data.error) {
                 return reject({ error: data.error });
@@ -62,23 +46,11 @@ export function signInRequest({ email, password }) {
     });
 }
 
-export function registerRequest({ firstName, lastName, email, shippingAddress, password }) {
-
+export function registerRequest(data) {
     return new Promise(async (resolve, reject) => {
-        // Request body
-        const body = JSON.stringify({ firstName, lastName, email, shippingAddress, password });
-
-        // Headers
-        const config = {
-            method: 'POST',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body
-        };
-
+        const body = JSON.stringify(data);
         try {
-            const response = await fetch('/api/users', config);
+            const response = await fetch('/api/users', tokenConfig('POST', body));
             const data = await response.json();
             if (data.error) {
                 return reject({error: data.error});
@@ -90,6 +62,25 @@ export function registerRequest({ firstName, lastName, email, shippingAddress, p
         }
     });
 }
+
+export function userProfileUpdate(data) {
+    return new Promise(async (resolve, reject) => {
+        const body = JSON.stringify(data);
+        try {
+            const response = await fetch('/api/users', tokenConfig('PUT', body));
+            const data = await response.json();
+            if (data.error) {
+                return reject({error: data.error});
+            } else {
+                return resolve(data);
+            }
+        } catch (error) {
+            return reject({ error });
+        }
+    });
+}
+
+/*
 
 export function updateRequest({ id, firstName, lastName, email, shippingAddress }) {
     return new Promise(async (resolve, reject) => {
@@ -124,3 +115,4 @@ export function updateRequest({ id, firstName, lastName, email, shippingAddress 
         }
     });
 }
+*/

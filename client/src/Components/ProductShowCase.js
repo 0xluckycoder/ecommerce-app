@@ -51,56 +51,13 @@ function ProductShowCase() {
 
 function Product({ state }) {
 
-    // const [quantity, setQuantity] = useState(1);
-
-    // const handleIncrement = () => {
-    //     // validate quantity
-    //     if (state.available_quantity === quantity) return; 
-
-    //     setQuantity(quantity + 1);
-    // }
-
-    // const handleDecrement = () => {
-    //     // validate quantity
-    //     if (quantity === 1) return;
-    //     setQuantity(quantity - 1);
-    // }
-
     const { cart, dispatch } = useContext(ItemContext);
-
-    // const addToCart = (state) => {
-    //         if (cart.items !== null) {
-
-    //             // validate quantity
-    //             const products = cart.items.filter(item => item.product._id === state._id);
-    //             const getCartQty = products.find(product => product.cart_qty);
-    //             const previousQty = getCartQty.cart_qty;
-    //             const currentQty = previousQty + quantity;
-    //             // console.log('yo im logging', product);
-
-    //             dispatch({ 
-    //                 type: ACTIONS.ADD_CART_ITEM,
-    //                 payload: {
-    //                     product: state,
-    //                     cart_qty: currentQty
-    //                 } 
-    //             });
-    //         } else {
-    //             dispatch({ 
-    //                 type: ACTIONS.ADD_CART_ITEM,
-    //                 payload: {
-    //                     product: state,
-    //                     cart_qty: quantity   
-    //                 } 
-    //             });
-    //         }
-    // }
 
     const addToCart = (state) => {
         if (cart.items !== null) {
             const found = cart.items.find(item => item._id === state._id);
             if (found !== undefined) {
-                alert('bruh da product already exists');
+                alert('You already added this product');
             } else {
                 dispatch({ type: ACTIONS.ADD_CART_ITEM, payload: state });
             }
@@ -114,7 +71,7 @@ function Product({ state }) {
         <section className={styles.wrapper}>
             
             <div className={styles.image}>
-                <img draggable="false" src="https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg" alt="product" />
+                <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1609609708/download_nqrqek.jpg" alt="product" />
             </div>
 
             <div className={styles.content}>

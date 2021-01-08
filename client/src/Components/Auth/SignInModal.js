@@ -13,10 +13,8 @@ function SignInModal() {
     const { dispatch, state } = useContext(AuthContext);
 
     useEffect(() => {
-        let mounted = true;
         document.body.style.overflow = "hidden";
         return () => {
-            mounted = false;
             document.body.style.overflow = "visible";
         }
     }, []);
@@ -30,7 +28,6 @@ function SignInModal() {
     }
 
     const [errors, setErrors] = useState({});
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -44,20 +41,16 @@ function SignInModal() {
     const signIn = async (values) => {
         setLoading(true);
         try {
-            const data = await signInRequest(values);
-            if (data) {
-                console.log(data);
-                dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: { data: data.user, token: data.token } });
-                localStorage.setItem('token', data.token);
-                alert('user successfully logged in');
-                history.push(`/user/${data.user._id}`);
-            }
+            const { user } = await signInRequest(values);
+            console.log(user);
+            dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: user });
+            history.push(`/user/${user._id}`);
         } catch (error) {
             dispatch({ type: ACTIONS.LOGIN_FAIL });
-            console.log('Error Occurred During Login', error);
             setErrors(error);
-            setLoading(false);
+            console.log(error);
         }
+        setLoading(false);
     }
 
     return ReactDOM.createPortal(

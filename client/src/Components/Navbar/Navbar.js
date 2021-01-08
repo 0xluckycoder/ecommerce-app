@@ -3,9 +3,10 @@ import styles from './Navbar.module.scss';
 import { AuthContext } from '../../Context/AuthContext';
 import { NavbarContext } from '../../Context/NavbarContext';
 import { Link, useHistory } from 'react-router-dom';
-import { ACTIONS } from '../../actions';
-import Search from './Search';
+// import { ACTIONS } from '../../actions';
+// import Search from './Search';
 import MobileNav from './MobileNav';
+
 
 function Navbar() {
 

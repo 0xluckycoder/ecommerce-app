@@ -1,0 +1,9 @@
+{
+    "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+    "plugins": ["prettier"],
+    "rules": {
+        "no-multi-assign": "warn",
+        "no-underscore-dangle": "off",
+        "consistent-return": "off"
+    }
+}

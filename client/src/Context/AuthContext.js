@@ -21,25 +21,19 @@ const reducer = (state, action) => {
         // eslint-disable-next-line no-fallthrough
         case ACTIONS.LOGIN_SUCCESS:
         case ACTIONS.REGISTER_SUCCESS:
-            // setLocalStorage(action.payload)
-            // console.log(action.payload.data, 'dispatched to context');
-            console.log('action payload', action.payload);
             return state = {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                token: action.payload.token,
-                user: { data: action.payload.data },
+                user: action.payload,
             }
         // eslint-disable-next-line no-fallthrough
         case ACTIONS.AUTH_ERROR:
         case ACTIONS.LOGIN_FAIL:
         case ACTIONS.LOGOUT_SUCCESS:
         case ACTIONS.REGISTER_FAIL:
-            localStorage.removeItem('token');
             return state = {
                 ...state,
-                token: null,
                 user: null,
                 isAuthenticated: false,
                 isLoading: false

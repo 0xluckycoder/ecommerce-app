@@ -1,0 +1,26 @@
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "email": "data@email.com",
+    "password": "12345",
+    "firstName": "user1",
+    "lastName": "perera",
+    "shippingAddress": "colombo"
+}
+
+###
+
+POST http://localhost:5000/api/auth
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjVmMTQyMDdjZGYwMGE0ODU3MWFkZiIsImlhdCI6MTYwOTk1MzYwMiwiZXhwIjoxNjA5OTU0NTAyfQ.068Vc5CecWMHhRwtMFsP4yB3n4ONTBn1YlXCuZynMYU
+
+{
+    "email": "data@email.com",
+    "password": "12345"
+}
+
+###
+
+POST http://localhost:5000/refresh_token

@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     password: {
         ...requiredString
     },
-    register_date: {
+    registerDate: {
         type: Date,
         default: Date.now
     }

@@ -1,8 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const auth  = require('../../middleware/auth');
-
-// item modal
 const Item = require('../../models/Item');
 
 // get all
@@ -16,7 +13,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // get one
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const receivedItem = await Item.findById(id);
@@ -37,13 +34,14 @@ router.post('/', async (req, res, next) => {
         const createdItem = await newItem.save();
         res.json(createdItem);
     } catch(error) {
+        // eslint-disable-next-line no-console
         console.log('error', error);
         next(error);
     }
 });
 
 // update
-router.put('/:id', (req, res, next) => {
+router.put('/:id', (req, res,) => {
     res.json({
         message: 'hello update'
     });

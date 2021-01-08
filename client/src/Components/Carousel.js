@@ -6,9 +6,9 @@ function Carousel() {
     return (
         <section className={styles.wrapper}>
             <div className={styles.container}>
-                {/* <video 
-                src="https://res.cloudinary.com/dw2wcjhod/video/upload/v1609603103/video_stkgu9.mp4" autoPlay="true" loop="true" muted="true"></video> */}
-                <video></video>
+                <video 
+                src="https://res.cloudinary.com/dw2wcjhod/video/upload/v1609603103/video_stkgu9.mp4" autoPlay="true" loop="true" muted="true"></video>
+                {/* <video></video> */}
             </div>
             <div className={styles.content}>
                 <h1>Dark Coffee</h1>

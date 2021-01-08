@@ -14,15 +14,10 @@ function SignUp() {
     const { dispatch } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(false);
-
-    // handle server validation errors
     const [errors, setErrors] = useState({});
-
-
 
     useEffect(() => {
         const timer  = setTimeout(() => setErrors({}), 2000);
-
         return () => {
             clearTimeout(timer);
         }
@@ -31,13 +26,8 @@ function SignUp() {
     const register = async (values) => {
         setLoading(true);
         try {
-            const data = await registerRequest(values);
-            if (data) {
-                console.log(data);
-                dispatch({type: ACTIONS.REGISTER_SUCCESS, payload: data });
-                localStorage.setItem('token', data.token);
-                alert('user successfully logged in');
-            }
+            const { user } = await registerRequest(values);
+            dispatch({ type: ACTIONS.REGISTER_SUCCESS, payload: user });
         } catch (error) {
             dispatch({ type: ACTIONS.REGISTER_FAIL });
             console.log('Error Occurred During Register', error);
@@ -71,11 +61,7 @@ function SignUp() {
                         shippingAddress: Yup.string().max(40).required('shipping address is required'),
                         password: Yup.string().min(8).max(100).required('Password is required')
                     })}
-                    onSubmit={(values) => {
-                        register(values);
-                        // registerRequest(firstName, lastName, email, shippingAddress, password);
-                    }}
-                >
+                    onSubmit={(values) => { register(values) }} >
                     <Form>
                         <div className={styles.inlineFields}>
                         <TextField id="firstName" name="firstName" type="text" label="First Name" />

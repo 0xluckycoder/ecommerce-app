@@ -21,13 +21,6 @@ const reducer = (cart, action) => {
             return cart = {
                 items: filtered
             }
-            // if (cart.items !== null) {
-        
-            // }
-            
-            // return cart = {
-            //     ...filtered
-            // };
         // eslint-disable-next-line no-fallthrough
         case ACTIONS.CLEAR_CART:
             localStorage.removeItem('items');

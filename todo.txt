@@ -1,0 +1,14 @@
+Backend
+
+[x] - refactor the server code make it cleaner
+[x] - set eslint and styleGuide
+[ ] - handle protected routes in server side
+[ ] - save accessToken in httpOnly cookie
+
+Frontend
+
+[/] - manage auth state & protected routes properly
+[ ] - use redirects in server errors
+[ ] - logout
+
+[ ] - deploy the app

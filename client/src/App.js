@@ -6,7 +6,6 @@ import SignUp from './Components/Auth/SignUp';
 import { verifyToken } from './API/api';
 import { AuthContext } from './Context/AuthContext';
 import { ACTIONS } from './actions';
-
 import UserProfile from './Components/UserAccount/UserProfile';
 import EditProfile from './Components/UserAccount/EditProfile';
 
@@ -17,16 +16,12 @@ function App() {
   const loadUser = async () => {
     try {
       dispatch({ type: ACTIONS.USER_LOADING });
-      const data = await verifyToken();
-      if (data) {
-        dispatch({ type: ACTIONS.USER_LOADED, payload: data }); 
-      }
-      console.log('load user success', data);
+      const { user } = await verifyToken();
+      dispatch({ type: ACTIONS.USER_LOADED, payload: user });
     } catch (error) {
       if (error) dispatch({ type: ACTIONS.AUTH_ERROR });
       console.log('no authenticated user', error);
     }
-
   }
 
   useEffect(() => {

@@ -20,7 +20,7 @@ function Checkout({ setPage }) {
                 <ul>
                     {cart.items !== null && cart.items.map((item, index) => (
                         <li key={index}>
-                            <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1609596515/posts/xok0ucfoquts81pws0mn.jpg" alt="product" />
+                            <img draggable="false" src="https://res.cloudinary.com/dw2wcjhod/image/upload/v1609609708/download_nqrqek.jpg" alt="product" />
                             <div>
                                 <p>{item.product_name}</p>
                                 <p className={style.price}>{item.price} LKR</p>

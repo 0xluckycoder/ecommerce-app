@@ -5,7 +5,7 @@ import { Redirect, useParams, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik, Form, useField } from 'formik';
 import Navbar from '../Navbar/Navbar';
-import { updateRequest } from '../../API/api';
+import { userProfileUpdate } from '../../API/api';
 import { ACTIONS } from '../../actions';
 
 function EditProfile() {
@@ -15,20 +15,24 @@ function EditProfile() {
 
     const [loading, setLoading] = useState(false);
 
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
 
     const updateUser = async (values) => {
         setLoading(true);
         try {
-            const data = await updateRequest(values);
+            const data = await userProfileUpdate(values);
             if (data) {
                 dispatch({ type: ACTIONS.UPDATE_SUCCESS, payload: data });
                 setLoading(false);
                 history.push(`/user/${state.user.data._id}`)
             }
         } catch (error) {
-            console.log('Error Occurred During Register', error);
-            setErrors(error);
+            console.log(error);
+            if (error.error === 'TOKEN_ERR') {
+                history.push('/loggedout')
+            }
+            // console.log('Error Occurred During Register', error);
+            // setErrors(error);
         }
 
     }
@@ -40,7 +44,7 @@ function EditProfile() {
         <section className={styles.wrapper}>
             {/* alerts */}
             <div className={`card text-center ${styles.card}`}>
-            {errors.error !== undefined && <div className="alert alert-danger" role="alert">{errors.error}</div>}
+            {/* {errors.error !== undefined && <div className="alert alert-danger" role="alert">{errors.error}</div>} */}
             {loading && <div className="alert alert-primary" role="alert">Please wait...</div>}
                 <div className="card-body">
                 <div className="card-title text-left">Update your profile</div>
