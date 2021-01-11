@@ -55,7 +55,7 @@ function SignInModal() {
 
     return ReactDOM.createPortal(
         <>
-        {state.isAuthenticated && state.user && state.user.data && <Redirect to={`/user/${state.user.data._id}`} />}
+        {state.isAuthenticated && state.user && <Redirect to={`/user/${state.user._id}`} />}
         <div onClick={(e) => handleClose(e, 'sign-in-overlay')} className={`sign-in-overlay ${styles.overlay}`}>
             <div className={styles.wrapper}>
                 <div className={styles.body}>

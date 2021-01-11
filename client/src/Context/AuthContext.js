@@ -44,7 +44,7 @@ const reducer = (state, action) => {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                user: { data: action.payload.data },
+                user: action.payload,
             }
         // eslint-disable-next-line no-fallthrough
         default:

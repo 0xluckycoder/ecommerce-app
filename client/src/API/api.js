@@ -11,6 +11,18 @@ function tokenConfig(method, body) {
     return config;
 }
 
+export function logout() {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const response = await fetch('/api/auth/logout', tokenConfig('GET', true));
+            const data = await response.json();
+            return resolve(data);
+        } catch(error) {
+
+        }
+    })
+}
+
 export function verifyToken() {
     return new Promise(async (resolve, reject) => {        
         try {

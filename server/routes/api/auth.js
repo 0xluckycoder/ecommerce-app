@@ -46,4 +46,12 @@ router.get('/user', auth, async (req, res) => {
     res.json({ user });
 });
 
+// @route GET api/auth/logout
+// @desc Logout the user
+// @access private
+router.get('/logout', auth, async (req, res) => {
+    res.clearCookie("__token", { httpOnly: true });
+    return res.status(200).json({ message: "success" });
+});
+
 module.exports = router;

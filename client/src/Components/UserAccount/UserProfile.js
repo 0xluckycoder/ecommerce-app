@@ -4,6 +4,8 @@ import Navbar from '../Navbar/Navbar';
 import { AuthContext } from '../../Context/AuthContext';
 import { Redirect, Link, Route, BrowserRouter as Router, useHistory } from 'react-router-dom';
 import EditProfile from './EditProfile';
+import { logout } from '../../API/api';
+import { ACTIONS } from '../../actions'
 
 
 function UserProfile() {
@@ -15,10 +17,12 @@ function UserProfile() {
 
     let history = useHistory();
 
-    // useEffect(() => {
-    // }, []);
-
-    // const { firstName, lastName, email, shippingAddress, _id } = state;
+    const handleLogout = async () => {
+        console.log('runngin logout')
+        await logout();
+        dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
+        history.push('/');
+    }
     
     return (
         state.isAuthenticated && state.user &&        
@@ -32,8 +36,8 @@ function UserProfile() {
                     <li className="list-group-item">{state.user.email}</li>
                     <li className="list-group-item">{state.user.shippingAddress}</li>
                     <li className="list-group-item">
-                        <button className={styles.button}>Logout</button>
-                        <Link to={`/edit/${state._id}`}><button className={styles.button}>Edit Profile</button></Link>
+                        <button className={styles.button} onClick={() => handleLogout}>Logout</button>
+                        <Link to={`/edit/${state.user._id}`}><button className={styles.button}>Edit Profile</button></Link>
                     </li>
                 </ul>
                 </div>

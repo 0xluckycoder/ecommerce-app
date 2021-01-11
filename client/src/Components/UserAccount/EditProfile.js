@@ -20,25 +20,18 @@ function EditProfile() {
     const updateUser = async (values) => {
         setLoading(true);
         try {
-            const data = await userProfileUpdate(values);
-            if (data) {
-                dispatch({ type: ACTIONS.UPDATE_SUCCESS, payload: data });
-                setLoading(false);
-                history.push(`/user/${state.user.data._id}`)
-            }
+            const { data } = await userProfileUpdate(values);            
+            dispatch({ type: ACTIONS.UPDATE_SUCCESS, payload: data });
+            setLoading(false);
+            history.push(`/user/${state.user._id}`)
         } catch (error) {
             console.log(error);
-            if (error.error === 'TOKEN_ERR') {
-                history.push('/loggedout')
-            }
-            // console.log('Error Occurred During Register', error);
-            // setErrors(error);
         }
 
     }
 
     return (
-        state.isAuthenticated && state.user && state.user.data ?
+        state.isAuthenticated && state.user &&
         <>
         <Navbar />
         <section className={styles.wrapper}>
@@ -50,9 +43,9 @@ function EditProfile() {
                 <div className="card-title text-left">Update your profile</div>
                 <Formik
                     initialValues={{
-                        firstName: `${state.user.data.firstName}`,
-                        lastName: `${state.user.data.lastName}`,
-                        shippingAddress: `${state.user.data.shippingAddress}`,
+                        firstName: `${state.user.firstName}`,
+                        lastName: `${state.user.lastName}`,
+                        shippingAddress: `${state.user.shippingAddress}`,
                     }}
                     validationSchema={Yup.object().shape({
                         firstName: Yup.string().max(10).required('first name is required'),
@@ -61,7 +54,7 @@ function EditProfile() {
                     })}
                     onSubmit={({firstName, lastName, shippingAddress}) => {
                         // console.log(firstName, lastName, shippingAddress);
-                        updateUser({ firstName, lastName, shippingAddress, id: state.user.data._id });
+                        updateUser({ firstName, lastName, shippingAddress, id: state.user._id });
                         // console.log(values);
                         // register(values);
                         // registerRequest(, password);
@@ -73,7 +66,7 @@ function EditProfile() {
                         <TextField id="shippingAddress" name="shippingAddress" type="text" label="Shipping Address" />
                         <div className={styles.formButtons}>
                             <button className={styles.button} type="submit">Save</button>
-                            <button className={styles.button} onClick={() => history.push(`/user/${state.user.data._id}`)}>Cancel</button>
+                            <button className={styles.button} onClick={() => history.push(`/user/${state.user._id}`)}>Cancel</button>
                         </div>
                     </Form>
                 </Formik>
@@ -81,8 +74,6 @@ function EditProfile() {
             </div>
         </section>
         </>
-        :
-        <Redirect to="/" />
     )
 }
 
